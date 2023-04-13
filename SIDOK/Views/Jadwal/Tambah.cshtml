@@ -1,0 +1,43 @@
+﻿@model SIDOK.Models.DTO.PoliDTO
+
+@{
+    ViewData["Title"] = "Tambah";
+}
+
+<h1>Insert Schedule</h1>
+
+<h4>PoliDTO</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Tambah">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Hari" class="control-label"></label>
+                <input asp-for="Hari" class="form-control" />
+                <span asp-validation-for="Hari" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdPoli" class="control-label"></label>
+                <input asp-for="IdPoli" class="form-control" />
+                <span asp-validation-for="IdPoli" class="text-danger"></span>
+            </div>
+@*            <div class="form-group">
+                <label asp-for="id_dokter" class="control-label"></label>
+                <input asp-for="id_dokter" class="form-control" />
+                <span asp-validation-for="id_dokter" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Tambah" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

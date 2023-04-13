@@ -1,0 +1,57 @@
+﻿@model SIDOK.Models.Poli
+
+@{
+    ViewData["Title"] = "Details";
+}
+@{
+    IList<SIDOK.Models.DTO.PoliDTO> poliDTOs = ViewData["Jadwal"] as IList<SIDOK.Models.DTO.PoliDTO>;
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Poli</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nama Poli
+        </dt>
+        <dd class = "col-sm-10">
+            : @Html.DisplayFor(model => model.NamaPoli)
+        </dd>
+        <dt class = "col-sm-2">
+            Ruangan
+        </dt>
+        <dd class = "col-sm-10">
+            : @Html.DisplayFor(model => model.LokasiPoli)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdPoli">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+<h4 class="mt-3">Jadwal Dokter</h4>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nama Dokter</th>
+                <th scope="col">Hari</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var polidto in poliDTOs)
+            {
+                <tr>
+                    <td>Dr @polidto.NamaDokter</td>
+                    <td>@polidto.Hari</td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>

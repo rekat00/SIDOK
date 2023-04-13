@@ -1,0 +1,60 @@
+﻿@model SIDOK.Models.DTO.PoliDTO
+
+@{
+    ViewData["Title"] = "Tambah";
+}
+@{
+    IList<SIDOK.Models.Poli> Polis = ViewData["Poli"] as IList<SIDOK.Models.Poli>;
+}
+
+<h1>Tambah Jadwal Praktek Dokter</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Schedule" id="myForm" onsubmit="createForm(event)">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+@*            <div class="form-group">
+                <label asp-for="Hari" class="control-label"></label>
+                <input asp-for="Hari" class="form-control" />
+                <span asp-validation-for="Hari" class="text-danger"></span>
+            </div>*@
+            <div class="form-group my-2">
+                <label asp-for="Hari" class="form-label"></label>
+                <select asp-for="Hari" class="form-select">
+                        <option value="Senin">Senin</option>
+                        <option value="Selasa">Selasa</option>
+                        <option value="Rabu">Rabu</option>
+                        <option value="Kamis">Kamis</option>
+                        <option value="Jumat">Jumat</option>
+                        <option value="Sabtu">Sabtu</option>
+                        <option value="Minggu">Minggu</option>
+                </select>
+
+            </div>
+
+            <div class="form-group my-2">
+                <label asp-for="IdPoli" class="form-label">Poli</label>
+                <select asp-for="IdPoli" class="form-select">
+                    @foreach (var poli in Polis)
+                    {
+                        <option value="@poli.IdPoli">@poli.NamaPoli</option>
+                    }
+                    <span asp-validation-for="IdPoli" class="text-danger"></span>
+                </select>
+            </div>
+
+            <div class="form-group my-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="text-decoration-none">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

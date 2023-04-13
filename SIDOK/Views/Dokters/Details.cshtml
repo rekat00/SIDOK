@@ -1,0 +1,100 @@
+﻿@model SIDOK.Models.DTO.DokterSpesialisasiDTO
+
+@{
+    ViewData["Title"] = "Details";
+}
+@{
+    IList <SIDOK.Models.DTO.PoliDTO> poliDTOs = ViewData["Poli_Hari"] as IList<SIDOK.Models.DTO.PoliDTO>;
+}
+
+<h1>Details</h1>
+<div class="container">
+<div>
+    <h4>Dokter</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nama Dokter
+        </dt>
+        <dd class = "col-sm-10">
+            : Dr @Html.DisplayFor(model => model.Nama)
+        </dd>
+        <dt class = "col-sm-2">
+            NIP
+        </dt>
+        <dd class = "col-sm-10">
+            : @Html.DisplayFor(model => model.Nip)
+        </dd>
+        <dt class = "col-sm-2">
+           NIK
+        </dt>
+        <dd class = "col-sm-10">
+            : @Html.DisplayFor(model => model.Nik)
+        </dd>
+        <dt class = "col-sm-2">
+            Tanggal Lahir
+        </dt>
+        <dd class = "col-sm-10">
+            : @Html.DisplayFor(model => model.Tanggal_lahir)
+        </dd>
+        <dt class = "col-sm-2">
+            Tempat Lahir
+        </dt>
+        <dd class = "col-sm-10">
+            : @Html.DisplayFor(model => model.Tempat_lahir)
+        </dd>
+        <dt class = "col-sm-2">
+            Jenis Kelamin
+        </dt>
+        <dd class = "col-sm-10">
+                :                        @if (Model.Jenis_kelamin == 1)
+                {
+                    <span>Pria</span>
+                }
+                else
+                {
+                    <span>Wanita</span>
+                }
+            
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Spesialisasi)
+        </dt>
+        <dd class="col-sm-10">
+            : @Html.DisplayFor(model => model.Spesialisasi)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<h4 class="mt-3">Jadwal Dokter @Html.DisplayFor(model => model.Nama)</h4>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nama Poli</th>
+                <th scope="col">Lokasi</th>
+                <th scope="col">Hari</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach(var polidto in poliDTOs)
+            {
+                <tr>
+                <td>@polidto.NamaPoli</td>
+                <td>@polidto.LokasiPoli</td>
+                <td>@polidto.Hari</td>
+                </tr>
+            }
+            
+        </tbody>
+
+    </table>
+</div>
+</div>

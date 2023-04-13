@@ -1,0 +1,116 @@
+﻿@model IEnumerable<SIDOK.Models.DTO.DokterSpesialisasiDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    IList<SIDOK.Models.Spesialisasi> spesialisasi = ViewData["spesialisasi"] as IList<SIDOK.Models.Spesialisasi>;
+}
+
+<h1>Daftar Dokter</h1>
+<div id="app">
+<p>
+    <a asp-action="Create" class="btn btn-primary my-3">Tambah Dokter</a>   
+</p>
+
+    <form asp-action="Index" class="input-group" method="GET">
+        <p>
+
+            <input type="text" placeholder="Cari Dokter" name="Search" class="form-control" />
+            <select name="Spesialis" class="form-select-sm">
+                @foreach (var spec in spesialisasi)
+                {
+                    <option value="@spec.Nama">@spec.Nama</option>
+                }
+                <option value=""  selected>Cari Berdasarkan Spesialis </option>
+            </select>
+            <div class="input-group-append">
+                <input class="btn btn-outline-primary" type="submit" value="Search" />
+            </div>
+
+        </p>
+    </form>
+    
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Nama Dokter
+            </th>
+            <th>
+                NIP
+            </th>
+            <th>
+                NIK
+            </th>
+            <th>
+                Tanggal Lahir
+            </th>
+            <th>
+                Tempat Lahir
+            </th>
+            <th>
+                Jenis Kelamin
+            </th>
+
+            <th>
+                Spesialis
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                <a class="text-decoration-none" asp-action="Details" asp-route-id="@item.Id">
+                Dr @Html.DisplayFor(modelItem => item.Nama)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tanggal_lahir)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tempat_lahir)
+            </td>
+            @*KALAU 1 Pria ELSE Wanita*@
+            <td>
+                        @if (item.Jenis_kelamin == 1)
+                        {
+                            <span>Pria</span>
+                        }
+                        else
+                        {
+                        <span>Wanita</span>    
+                        }
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Spesialisasi)
+             </td>
+            <td>
+                <span class="btn-group-sm">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary ">Edit</a>  
+                 </span>
+            </td>
+            <td class="btn-group-sm">
+                <a asp-action="Schedule" asp-route-id="@item.Id" class="btn btn-success">Jadwal</a>
+            </td>
+            <td class="btn-group-sm">
+                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+
+}
+
+    </tbody>
+</table>
+</div>

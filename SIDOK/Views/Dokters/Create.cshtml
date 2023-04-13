@@ -1,0 +1,76 @@
+﻿@model SIDOK.Models.DTO.DokterSpesialisasiDTO
+@{
+    ViewData["Title"] = "Create";
+}
+@{
+    IList<SIDOK.Models.Spesialisasi> spesialisasi =  ViewData["spesialisasi"] as IList<SIDOK.Models.Spesialisasi>;
+}
+
+<div id="app">
+<h1>Tambah Data</h1>
+<h4>Dokter</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" id="myForm" onsubmit="createForm(event)">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group my-2">
+                <label asp-for="Nama" class="control-label"></label>
+                <input asp-for="Nama" class="form-control" required />
+                <span asp-validation-for="Nama" class="text-danger"></span>
+            </div>
+                <div class="form-group my-2">
+                <label asp-for="Nik" class="control-label"></label>
+                <input asp-for="Nik" class="form-control" required/>
+                <span asp-validation-for="Nik" class="text-danger"></span>
+            </div>
+                <div class="form-group my-2">
+                <label asp-for="Tanggal_lahir" class="control-label"></label>
+                <input asp-for="Tanggal_lahir" class="form-control" required/>
+                <span asp-validation-for="Tanggal_lahir" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="Tempat_lahir" class="control-label"></label>
+                <input asp-for="Tempat_lahir" class="form-control" required/>
+                <span asp-validation-for="Tempat_lahir" class="text-danger"></span>
+            </div>
+
+            <label asp-for="Jenis_kelamin" class="form-check-label">Jenis Kelamin</label><br>
+            <div class="form-check my-2">
+                <div class="row">
+                    <div class="col-sm">
+                        <input type="radio" asp-for="Jenis_kelamin" value="1" class="form-check-input" required>
+                        <label asp-for="Jenis_kelamin" class="form-check-label">Pria</label><br>
+                    </div>
+                    <div class="col-sm">
+                            <input type="radio" asp-for="Jenis_kelamin" value="2" class="form-check-input">
+                            <label asp-for="Jenis_kelamin" class="form-check-label">Wanita</label><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group my-2">
+                <label asp-for="IdSpesialisasi"></label>
+                <select asp-for="IdSpesialisasi" class="form-select" required>
+                        @foreach (var spesisalis in spesialisasi)
+                        {
+                            <option value="@spesisalis.Id">@spesisalis.Nama</option>
+                        }
+                </select>
+            </div>
+
+            <div class="form-group my-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

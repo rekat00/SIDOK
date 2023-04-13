@@ -1,0 +1,31 @@
+﻿@model SIDOK.Models.DTO.CariDokterDTO
+@{
+    ViewData["Title"] = "Create";
+}
+@{
+    IList<SIDOK.Models.Spesialisasi> spesialisasi = ViewData["spesialisasi"] as IList<SIDOK.Models.Spesialisasi>;
+    IList<SIDOK.Models.Poli> polis = ViewData["poli"] as IList<SIDOK.Models.Poli>;
+}
+<form asp-action="Cari">
+<div class="form-group my-2">
+    <label asp-for="IdSpesialisasi">Spesialisasi</label>
+    <select asp-for="IdSpesialisasi"  class="form-select" required>
+        @foreach (var spesisalis in spesialisasi)
+        {
+            <option value="@spesisalis.Id">@spesisalis.Nama</option>
+        }
+        <option>Cari Spesialisasi</option>
+    </select>
+</div>
+<div class="form-group my-2">
+    <label asp-for="IdPoli">Poli</label>
+    <select asp-for="IdPoli" class="form-select" required>
+        @foreach (var poli in polis)
+        {
+            <option value="@poli.IdPoli">@poli.NamaPoli</option>
+        }
+        <option>Cari Poli</option>
+    </select>
+</div>
+
+</form>

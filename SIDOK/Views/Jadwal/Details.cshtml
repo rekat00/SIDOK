@@ -1,0 +1,42 @@
+﻿@model SIDOK.Models.DTO.PoliDTO
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>PoliDTO</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NamaDokter)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NamaDokter)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NamaPoli)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NamaPoli)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Hari)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hari)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LokasiPoli)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LokasiPoli)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdPoli">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
